@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      routes:
+        - id: RESTAURANT-SERVICE
+          uri: lb://RESTAURANT-SERVICE
+          predicates:
+            - Path=/rest/**
+          filters:
+            - AuthFilter
+
+        - id: customer-service
+          uri: lb://CUSTOMER-SERVICE
+          predicates:
+            - Path=/cust/**
+          filters:
+            - AuthFilter
+
+        - id: reservation-service
+          uri: lb://RESERVATION-SERVICE
+          predicates:
+            - Path=/reserv/**
+          filters:
+            - AuthFilter
+
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/**
+
+server:
+  port: 8000
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
