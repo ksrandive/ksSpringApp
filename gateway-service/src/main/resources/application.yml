@@ -8,12 +8,16 @@ spring:
           enabled: true
           lowerCaseServiceId: true
       routes:
-        - id: RESTAURANT-SERVICE
+        - id: restaurant-service
           uri: lb://RESTAURANT-SERVICE
           predicates:
             - Path=/rest/**
           filters:
             - AuthFilter
+            - name: CircuitBreaker
+              args:
+                name: restaurant-service
+                fallbackuri: forward:/restFallback
 
         - id: customer-service
           uri: lb://CUSTOMER-SERVICE
@@ -21,6 +25,10 @@ spring:
             - Path=/cust/**
           filters:
             - AuthFilter
+            - name: CircuitBreaker
+              args:
+                name: customer-service
+                fallbackuri: forward:/custFallback
 
         - id: reservation-service
           uri: lb://RESERVATION-SERVICE
@@ -28,6 +36,10 @@ spring:
             - Path=/reserv/**
           filters:
             - AuthFilter
+            - name: CircuitBreaker
+              args:
+                name: reservation-service
+                fallbackuri: forward:/reservFallback
 
         - id: auth-service
           uri: lb://AUTH-SERVICE
@@ -45,3 +57,5 @@ eureka:
       defaultZone: http://localhost:8761/eureka
   instance:
     hostname: localhost
+
+

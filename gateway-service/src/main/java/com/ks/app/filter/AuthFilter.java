@@ -1,11 +1,13 @@
 package com.ks.app.filter;
 
+import com.ks.app.error.UserTokenException;
 import com.ks.app.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.RestTemplate;
 import reactor.core.publisher.Mono;
 
@@ -26,6 +28,7 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
         super(Config.class);
     }
 
+    @ExceptionHandler({UserTokenException.class})
     @Override
     public GatewayFilter apply(Config config) {
         return (((exchange, chain) -> {

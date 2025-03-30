@@ -1,5 +1,6 @@
 package com.ks.app.controller;
 
+import com.ks.app.error.UserTokenException;
 import com.ks.app.model.AuthRequest;
 import com.ks.app.model.ClientCustomer;
 import com.ks.app.model.UserCredential;
@@ -39,7 +40,11 @@ public class AuthController {
 
     @GetMapping(value = "/validate")
     public String validateToken(@RequestParam("token") String token) {
-        authService.validateToken(token);
+        try{
+            authService.validateToken(token);
+        }catch (Exception e){
+            throw new UserTokenException("Invalid token found!");
+        }
         return "token is validated";
     }
 }

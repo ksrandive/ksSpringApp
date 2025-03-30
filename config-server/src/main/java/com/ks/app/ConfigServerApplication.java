@@ -3,15 +3,15 @@ package com.ks.app;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.cloud.config.server.EnableConfigServer;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableHystrix
-public class GatewayServiceApplication {
+@EnableConfigServer
+public class ConfigServerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GatewayServiceApplication.class, args);
+		SpringApplication.run(ConfigServerApplication.class, args);
 	}
 
 }
