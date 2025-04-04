@@ -5,6 +5,7 @@ import com.ks.app.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -28,6 +29,8 @@ public class CustomerService {
     public Customer saveCustomer(Customer customer) {
 //        customer.setRoles("ROLE_USER");
 //        customer.setPassword(encoder.encode(customer.getPassword()));
+        customer.setUpdatedTs(LocalDateTime.now());
+        customer.setUpdatedBy(customer.getRole());
         return customerRepository.save(customer);
     }
 }

@@ -1,8 +1,11 @@
 package com.ks.app.error;
 
-public class UserTokenException extends  RuntimeException{
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
-    public UserTokenException(String message){
-        super(message);
+public class UserTokenException extends ResponseStatusException {
+
+    public UserTokenException(HttpStatus status) {
+        super(status);
     }
 }

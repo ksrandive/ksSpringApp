@@ -1,5 +1,6 @@
 package com.ks.app.model;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,12 +10,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Customer {
-
-    private Integer customerId;
-    private String name;
-    private String email;
-    private String phoneNumber;
-    private String address;
-    private String role;
+public class Token {
+    private Integer id;
+    private String accessToken;
+    private String refreshToken;
+    private boolean loggedOut;
+    private Integer refuserId;
 }

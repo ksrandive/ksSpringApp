@@ -32,7 +32,11 @@ public class RestaurantController {
     }
 
     @PostMapping(value = "/add")
-    public ResponseEntity<Restaurant> addRestaurantName(@RequestBody Restaurant restaurant) {
-        return  new ResponseEntity<>(restaurantService.addRestaurant(restaurant), HttpStatus.OK);
+    public ResponseEntity<?> addRestaurantName(@RequestBody Restaurant restaurant) {
+        Restaurant addRestaurant = restaurantService.addRestaurant(restaurant);
+        if(addRestaurant == null){
+            return new ResponseEntity<>("User not registered as restaurant user", HttpStatus.OK);
+        }
+        return  new ResponseEntity<>(addRestaurant, HttpStatus.OK);
     }
 }
