@@ -5,7 +5,6 @@ import com.ks.app.model.*;
 import com.ks.app.repository.TokenRepository;
 import com.ks.app.repository.UserCredentialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

@@ -41,7 +41,6 @@ public class AuthController {
 //    }
 
     @PostMapping(value = "/login")
-    @Cacheable
     public ResponseEntity<AuthenticationResponse> loginApp(@RequestBody AuthRequest userCredential) {
         return ResponseEntity.ok(authService.authenticate(userCredential));
     }

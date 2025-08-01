@@ -5,13 +5,6 @@ import com.ks.app.service.CustomUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.cache.RedisCacheConfiguration;
-import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.GenericToStringSerializer;
-import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -100,21 +93,21 @@ public class SecurityConfig {
 //        return authenticationProvider;
 //    }
 
-    public JedisConnectionFactory jedisConnectionFactory() {
-        RedisStandaloneConfiguration config = new RedisStandaloneConfiguration("localhost", 6379);
+//    public JedisConnectionFactory jedisConnectionFactory() {
+//        RedisStandaloneConfiguration config = new RedisStandaloneConfiguration("localhost", 6379);
 //        config.setUsername(username);
 //        config.setPassword(password);
 //        config.setDatabase(db);
-        return new JedisConnectionFactory(config);
-    }
-
-    @Bean
-    public RedisTemplate<?, ?> redisTemplate() {
-        RedisTemplate<?, ?> template = new RedisTemplate<>();
-        template.setConnectionFactory(jedisConnectionFactory());
-        template.setKeySerializer(new GenericToStringSerializer<>(String.class));
-        template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
-        return template;
-    }
+//        return new JedisConnectionFactory(config);
+//    }
+//
+//    @Bean
+//    public RedisTemplate<?, ?> redisTemplate() {
+//        RedisTemplate<?, ?> template = new RedisTemplate<>();
+//        template.setConnectionFactory(jedisConnectionFactory());
+//        template.setKeySerializer(new GenericToStringSerializer<>(String.class));
+//        template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+//        return template;
+//    }
 
 }

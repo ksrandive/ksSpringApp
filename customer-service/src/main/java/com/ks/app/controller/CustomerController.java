@@ -29,11 +29,10 @@ public class CustomerController {
         return "Pong";
     }
 
-//    @GetMapping(value = "/all")
-////    @PreAuthorize("hasAuthority('ROLE_USER')")
-//    public ResponseEntity<List<Customer>> getCustomer(){
-//        return new ResponseEntity<>(customerService.getAllCustomer(), HttpStatus.OK);
-//    }
+    @GetMapping(value = "/all")
+    public ResponseEntity<List<Customer>> getCustomer(){
+        return new ResponseEntity<>(customerService.getAllCustomer(), HttpStatus.OK);
+    }
 
     @GetMapping(value = "/all/{id}")
     public ResponseEntity<Customer> getCustomerById(@PathVariable(value = "id") Integer customerId){
